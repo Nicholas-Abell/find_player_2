@@ -7,7 +7,7 @@ import { GiHealthNormal, GiHeavyBullets } from "react-icons/gi";
 type CardProps = {
   title: string;
   content?: string | null;
-  roles?: string | null;
+  roles?: string[] | null;
   id: string;
 };
 

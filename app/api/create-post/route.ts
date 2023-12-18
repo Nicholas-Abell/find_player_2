@@ -15,3 +15,16 @@ export async function POST(request: any) {
   });
   return NextResponse.json({ result });
 }
+
+   // try {
+    //   await fetch("/api/create-post", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({ title, content }),
+    //   });
+    //   router.refresh();
+    // } catch (error) {
+    //   console.log("Create Post Error: ", error);
+    // }

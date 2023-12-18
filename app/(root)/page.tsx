@@ -1,5 +1,6 @@
 import { fetchPosts } from "@/lib/prisma/actions/user.actions";
 import Card from "../../components/shared/Card";
+import PostForm from "@/components/forms/PostForm";
 
 export default async function Home() {
   let posts = await fetchPosts();
@@ -8,6 +9,7 @@ export default async function Home() {
       {posts.map((post, key) => (
         <Card gameTitle={post.title} content={post.content} key={key} />
       ))}
+      <PostForm />
     </section>
   );
 }

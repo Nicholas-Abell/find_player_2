@@ -2,13 +2,25 @@
 import prisma from "../prisma";
 
 export async function fetchPosts() {
-    const posts = await prisma.post.findMany({
-      // where: { published: true },
-      // include: {
-      //   author: {
-      //     select: { name: true },
-      //   },
-      // },
+  const posts = await prisma.post.findMany({
+    // where: { published: true },
+    // include: {
+    //   author: {
+    //     select: { name: true },
+    //   },
+    // },
+  });
+  return posts;
+}
+
+export async function DeletePost(id: string) {
+  try {
+    await prisma.post.delete({
+      where: {
+        id: id,
+      },
     });
-    return posts;
+  } catch (error) {
+    console.log("deletePost Error: ", error);
+  }
 }

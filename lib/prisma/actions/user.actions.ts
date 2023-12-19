@@ -15,6 +15,15 @@ export async function fetchPosts() {
   return posts;
 }
 
+export async function fetchPost(id: string) {
+  const posts = await prisma.post.findUnique({
+    where: {
+      id: id,
+    },
+  });
+  return posts;
+}
+
 type Post = { title: string; content: string; roles: Role[] };
 
 export async function CreatePost({ title, content, roles }: Post) {

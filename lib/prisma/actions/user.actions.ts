@@ -4,24 +4,22 @@ import prisma from "../prisma";
 import { Role } from "@prisma/client";
 
 export async function fetchPosts() {
-  const posts = await prisma.post.findMany({
-    // where: { published: true },
-    // include: {
-    //   author: {
-    //     select: { name: true },
-    //   },
-    // },
-  });
+  const posts = await prisma.post.findMany({});
   return posts;
 }
 
 export async function fetchPost(id: string) {
-  const posts = await prisma.post.findUnique({
-    where: {
-      id: id,
-    },
-  });
-  return posts;
+  try {
+    const post = await prisma.post.findUnique({
+      where: {
+        id: id,
+      },
+    });
+    console.log(post);
+    return post;
+  } catch (error) {
+    console.log("fetchPost Error: ", error);
+  }
 }
 
 type Post = { title: string; content: string; roles: Role[] };

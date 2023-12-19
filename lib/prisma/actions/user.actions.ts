@@ -8,6 +8,17 @@ export async function fetchPosts() {
   return posts;
 }
 
+export async function fetchFilteredPosts(role: "damage" | "healer" | "tank") {
+  const posts = await prisma.post.findMany({
+    where: {
+      roles: {
+        has: role,
+      },
+    },
+  });
+  return posts;
+}
+
 export async function fetchPost(id: string) {
   try {
     const post = await prisma.post.findUnique({

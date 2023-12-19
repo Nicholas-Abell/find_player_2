@@ -16,36 +16,36 @@ const Card: React.FC<CardProps> = ({ title, content, roles, id }) => {
     <div className="flex flex-col justify-between items-center py-4 bg-gray-800 px-4 gap-4">
       <h3>{title}</h3>
       <p>{content}</p>
-      {/* <button className="bg-red-600 text-white" onClick={() => DeletePost(id)}>
-        Delete
-      </button> */}
-
       <div className="grid grid-cols-3 gap-4">
         <div
           className={`${
-            roles?.includes("tank") || null ? "text-white" : "text-gray-600"
-          } flex flex-col justify-between items-center gap-4 py-4`}
+            roles?.includes("tank") || roles?.length === 0
+              ? "text-white"
+              : "text-gray-600"
+          } flex flex-col justify-center items-center gap-4 py-4`}
         >
           <p>Tank</p>
           <FaShield size={25} />
-          <p>check</p>
         </div>
         <div
           className={`${
-            roles?.includes("damage") || null ? "text-white" : "text-gray-600"
-          } flex flex-col justify-between items-center gap-4 py-4`}
+            roles?.includes("damage") || roles?.length === 0
+              ? "text-white"
+              : "text-gray-600"
+          } flex flex-col justify-center items-center gap-4 py-4`}
         >
           <p>Damage</p>
           <GiHeavyBullets size={25} />
         </div>
         <div
           className={`${
-            roles?.includes("healer") || null ? "text-white" : "text-gray-600"
-          } flex flex-col justify-between items-center gap-4 py-4`}
+            roles?.includes("healer") || roles?.length === 0
+              ? "text-white"
+              : "text-gray-600"
+          } flex flex-col justify-center items-center gap-4 py-4`}
         >
           <p>Healer</p>
           <GiHealthNormal size={25} />
-          <p>check</p>
         </div>
       </div>
     </div>

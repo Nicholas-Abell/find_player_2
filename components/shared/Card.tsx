@@ -1,8 +1,8 @@
 "use client";
-import { DeletePost } from "@/lib/prisma/actions/user.actions";
 import React from "react";
 import { FaShield } from "react-icons/fa6";
 import { GiHealthNormal, GiHeavyBullets } from "react-icons/gi";
+import Link from "next/link";
 
 type CardProps = {
   title: string;
@@ -13,7 +13,10 @@ type CardProps = {
 
 const Card: React.FC<CardProps> = ({ title, content, roles, id }) => {
   return (
-    <div className="flex flex-col justify-between items-center py-4 bg-gray-800 px-4 gap-4">
+    <Link
+      href={`post/${id}`}
+      className="flex flex-col justify-between items-center py-4 bg-gray-800 px-4 gap-4"
+    >
       <h3>{title}</h3>
       <p>{content}</p>
       <div className="grid grid-cols-3 gap-4">
@@ -48,7 +51,7 @@ const Card: React.FC<CardProps> = ({ title, content, roles, id }) => {
           <GiHealthNormal size={25} />
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 export default Card;

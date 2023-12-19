@@ -1,4 +1,4 @@
-import { fetchPost } from "@/lib/prisma/actions/user.actions";
+import { fetchPost } from "@/lib/actions/user.actions";
 import React from "react";
 import { FaShield } from "react-icons/fa6";
 import { GiHeavyBullets, GiHealthNormal } from "react-icons/gi";

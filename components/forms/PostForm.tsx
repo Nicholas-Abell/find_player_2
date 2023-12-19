@@ -1,5 +1,5 @@
 "use client";
-import { CreatePost } from "@/lib/prisma/actions/user.actions";
+import { CreatePost } from "@/lib/actions/user.actions";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 

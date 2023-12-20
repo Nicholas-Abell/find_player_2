@@ -27,10 +27,15 @@ export const options: NextAuthOptions = {
       async authorize(credentials) {
         //user info from database here
 
-        const user = await fetchUser(credentials?.username, credentials?.password);
+        const user = await fetchUser(
+          credentials?.username as string,
+          credentials?.password as string
+        );
+        // const user = {id: "42", name: "nick", password: "0000"}
         if (
-          credentials?.username === user?.username &&
-          credentials?.password === user?.password
+          user &&
+          credentials?.username === user.username &&
+          credentials?.password === user.password
         ) {
           return user;
         } else return null;

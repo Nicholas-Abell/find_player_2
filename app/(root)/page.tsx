@@ -1,4 +1,4 @@
-import { fetchPosts } from "@/lib/actions/user.actions";
+import { fetchPosts } from "@/lib/actions/post.actions";
 import Card from "../../components/shared/Card";
 import PostForm from "@/components/forms/PostForm";
 

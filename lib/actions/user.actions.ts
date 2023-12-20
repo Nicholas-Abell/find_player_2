@@ -1,10 +1,12 @@
-"user server";
+"use server";
 import prisma from "../prisma/prisma";
 
 export async function fetchUser(username: string, password: string) {
-  prisma.user.findUnique({
+  const user = await prisma.user.findUnique({
     where: {
-      username: username,
+      username,
+      password,
     },
   });
+  return user;
 }

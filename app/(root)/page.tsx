@@ -4,11 +4,18 @@ import PostForm from "@/components/forms/PostForm";
 import { options } from "../api/auth/[[...nextauth]]/options";
 import { getServerSession } from "next-auth/next";
 import SignOutButton from "@/components/shared/SignOutButton";
+import { fetchUserByEmail } from "@/lib/actions/user.actions";
 
 export default async function Home() {
   let posts = await fetchPosts();
   const session = await getServerSession(options);
-  console.log(session);
+  console.log("session: ", session?.user);
+
+  const user = session?.user?.email
+    ? await fetchUserByEmail(session.user?.email)
+    : null;
+
+  console.log(user);
 
   return (
     <section className="text-gray-200">
@@ -19,6 +26,7 @@ export default async function Home() {
         <SignOutButton />
       </div>
       <div className="w-full min-h-screen text-gray-200 grid md:grid-cols-2 xl:grid-cols-3 grid-rows-3 r gap-4 p-4">
+        {user ? <PostForm id={user?.id} /> : <></>}
         {posts.map((post, key) => (
           <Card
             title={post.title}
@@ -29,7 +37,6 @@ export default async function Home() {
           />
         ))}
       </div>
-      <PostForm />
     </section>
   );
 }

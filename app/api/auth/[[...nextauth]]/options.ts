@@ -1,4 +1,4 @@
-import NextAuth, { NextAuthOptions } from "next-auth";
+import type { NextAuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { fetchUser } from "@/lib/actions/user.actions";
@@ -31,12 +31,13 @@ export const options: NextAuthOptions = {
           credentials?.username as string,
           credentials?.password as string
         );
-        // const user = {id: "42", name: "nick", password: "0000"}
+        // const user = {id: "42", username: "test", password: "test"}
         if (
           user &&
           credentials?.username === user.username &&
           credentials?.password === user.password
         ) {
+          console.log(user?.name, ": sign in");
           return user;
         } else return null;
       },

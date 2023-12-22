@@ -3,21 +3,25 @@ import { CreatePost } from "@/lib/actions/post.actions";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-type PostFormProps = {};
+type PostFormProps = {
+  id: string;
+};
 
 interface FormData {
   title: string;
   content: string;
   roles: any;
+  id: string;
 }
 
-const PostForm: React.FC<PostFormProps> = () => {
+const PostForm: React.FC<PostFormProps> = ({ id }) => {
   const router = useRouter();
 
   const [formData, setFormData] = useState<FormData>({
     title: "",
     content: "",
     roles: [],
+    id
   });
 
   const handleSubmit = async (e: any) => {
@@ -29,7 +33,6 @@ const PostForm: React.FC<PostFormProps> = () => {
     return roles.includes(role)
       ? roles.filter((r) => r !== role)
       : [...roles, role];
-    console.log(formData.roles);
   };
 
   return (

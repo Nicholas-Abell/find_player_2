@@ -33,12 +33,12 @@ export async function fetchPost(id: string) {
   }
 }
 
-type Post = { title: string; content: string; roles: Role[] };
+type Post = { title: string; content: string; roles: Role[], id: string };
 
-export async function CreatePost({ title, content, roles }: Post) {
+export async function CreatePost({ title, content, roles, id }: Post) {
   try {
     const createdPost = await prisma.post.create({
-      data: { title, content, roles: roles },
+      data: { title, content, roles: roles, authorId: id },
     });
     console.log(createdPost);
     revalidatePath("/");

@@ -5,6 +5,7 @@ import { options } from "../api/auth/[[...nextauth]]/options";
 import { getServerSession } from "next-auth/next";
 import SignOutButton from "@/components/shared/SignOutButton";
 import { fetchUserByEmail } from "@/lib/actions/user.actions";
+import Link from "next/link";
 
 export default async function Home() {
   let posts = await fetchPosts();
@@ -21,9 +22,14 @@ export default async function Home() {
     <section className="text-gray-200">
       <div className="w-full text-gray-200 flex justify-center items-center text-center py-4">
         <h1 className="text-xl font-bold">
-          Over Where? {session ? "Logged In" : "Not Logged In"}
+          Over Where?
+          <br />{" "}
+          {session ? (
+            <p>{session.user?.name}</p>
+          ) : (
+            <Link href="/sign-up">Create an Account</Link>
+          )}
         </h1>
-        <SignOutButton />
       </div>
       <div className="w-full min-h-screen text-gray-200 grid md:grid-cols-2 xl:grid-cols-3 grid-rows-3 r gap-4 p-4">
         {user ? <PostForm id={user?.id} /> : <></>}

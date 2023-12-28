@@ -11,6 +11,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>{children}</body>
+      <div className="w-full bg-red-600 p-8"></div>
     </html>
   )
 }

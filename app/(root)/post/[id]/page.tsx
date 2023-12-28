@@ -1,4 +1,7 @@
+import { options } from "@/app/api/auth/[[...nextauth]]/options";
 import { fetchPost } from "@/lib/actions/post.actions";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 import React from "react";
 import { FaShield } from "react-icons/fa6";
 import { GiHeavyBullets, GiHealthNormal } from "react-icons/gi";
@@ -6,6 +9,9 @@ import { GiHeavyBullets, GiHealthNormal } from "react-icons/gi";
 type pageProps = {};
 
 async function page({ params }: { params: { id: string } }) {
+  // const session = await getServerSession(options);
+  // if (!session) redirect("/sign-up");
+
   const post = await fetchPost(params.id);
   return (
     <div className="flex flex-col justify-between items-center py-4 bg-gray-800 px-4 gap-4 text-white">

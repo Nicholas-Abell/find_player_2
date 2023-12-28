@@ -9,8 +9,8 @@ import { GiHeavyBullets, GiHealthNormal } from "react-icons/gi";
 type pageProps = {};
 
 async function page({ params }: { params: { id: string } }) {
-  // const session = await getServerSession(options);
-  // if (!session) redirect("/sign-up");
+  const session = await getServerSession(options);
+  if (!session) redirect("/sign-up");
 
   const post = await fetchPost(params.id);
   return (

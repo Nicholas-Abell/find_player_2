@@ -1,2 +1,2 @@
 export { default } from "next-auth/middleware";
-export const config = { matcher: ["/sign-in:path*"] };
+export const config = { matcher: ["/post/:path*", "/sign-in:path*"] };

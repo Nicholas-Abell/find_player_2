@@ -9,9 +9,6 @@ import { GiHeavyBullets, GiHealthNormal } from "react-icons/gi";
 type pageProps = {};
 
 async function page({ params }: { params: { id: string } }) {
-  const session = await getServerSession(options);
-  if (!session) redirect("/sign-up");
-
   const post = await fetchPost(params.id);
   return (
     <div className="flex flex-col justify-between items-center py-4 bg-gray-800 px-4 gap-4 text-white">

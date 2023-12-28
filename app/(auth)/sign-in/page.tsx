@@ -1,8 +1,10 @@
+import { redirect } from "next/navigation";
 import React from "react";
 
 type pageProps = {};
 
 const page: React.FC<pageProps> = () => {
-  return <div>Secret</div>;
+  redirect("/");
+  return <div>Logging you in</div>;
 };
 export default page;

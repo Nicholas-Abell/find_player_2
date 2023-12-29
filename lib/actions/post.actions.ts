@@ -11,7 +11,7 @@ export async function fetchPosts() {
 export async function fetchFilteredPosts(role: "damage" | "healer" | "tank") {
   const posts = await prisma.post.findMany({
     where: {
-      roles: {
+      role: {
         has: role,
       },
     },
@@ -38,7 +38,7 @@ type Post = { title: string; content: string; roles: Role[]; id: string };
 export async function CreatePost({ title, content, roles, id }: Post) {
   try {
     const createdPost = await prisma.post.create({
-      data: { title, content, roles: roles, authorId: id },
+      data: { title, content, role: roles, authorId: id },
     });
     console.log(createdPost);
     revalidatePath("/");

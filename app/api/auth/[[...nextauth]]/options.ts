@@ -40,7 +40,7 @@ export const options: NextAuthOptions = {
           credentials?.username === user.username &&
           credentials?.password === user.password
         ) {
-          console.log(user?.name, ": sign in");
+          // console.log(user?.name, ": sign in");
           return user;
         } else return null;
       },
@@ -52,7 +52,7 @@ export const options: NextAuthOptions = {
       return session;
     },
     async signIn({ profile }) {
-      console.log(profile);
+      // console.log(profile);
       try {
         const userExists = await fetchUserByEmail(profile?.email || "");
         if (!userExists) {

@@ -1,7 +1,4 @@
-import { options } from "@/app/api/auth/[[...nextauth]]/options";
 import { fetchPost } from "@/lib/actions/post.actions";
-import { getServerSession } from "next-auth";
-import { redirect } from "next/navigation";
 import React from "react";
 import { FaShield } from "react-icons/fa6";
 import { GiHeavyBullets, GiHealthNormal } from "react-icons/gi";
@@ -17,7 +14,7 @@ async function page({ params }: { params: { id: string } }) {
       <div className="grid grid-cols-3 gap-4">
         <div
           className={`${
-            post?.roles?.includes("tank") || post?.roles?.length === 0 || null
+            post?.role?.includes("tank") || post?.role?.length === 0 || null
               ? "text-white"
               : "text-gray-600"
           } flex flex-col justify-center items-center gap-4 py-4`}
@@ -27,7 +24,7 @@ async function page({ params }: { params: { id: string } }) {
         </div>
         <div
           className={`${
-            post?.roles?.includes("damage") || post?.roles?.length === 0 || null
+            post?.role?.includes("damage") || post?.role?.length === 0 || null
               ? "text-white"
               : "text-gray-600"
           } flex flex-col justify-center items-center gap-4 py-4`}
@@ -37,7 +34,7 @@ async function page({ params }: { params: { id: string } }) {
         </div>
         <div
           className={`${
-            post?.roles?.includes("healer") || post?.roles?.length === 0 || null
+            post?.role?.includes("healer") || post?.role?.length === 0 || null
               ? "text-white"
               : "text-gray-600"
           } flex flex-col justify-center items-center gap-4 py-4`}

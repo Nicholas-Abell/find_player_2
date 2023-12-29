@@ -3,9 +3,7 @@ import Card from "../../components/shared/Card";
 import PostForm from "@/components/forms/PostForm";
 import { options } from "../api/auth/[[...nextauth]]/options";
 import { getServerSession } from "next-auth/next";
-import SignOutButton from "@/components/shared/SignOutButton";
 import { fetchUserByEmail } from "@/lib/actions/user.actions";
-import Link from "next/link";
 
 export default async function Home() {
   let posts = await fetchPosts();
@@ -31,7 +29,7 @@ export default async function Home() {
           <Card
             title={post.title}
             content={post.content}
-            roles={post.roles}
+            roles={post.role}
             id={post.id}
             key={key}
           />

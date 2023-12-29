@@ -53,6 +53,7 @@ const PostForm: React.FC<PostFormProps> = ({ id }) => {
                 title: e.target.value,
               }));
             }}
+            required
           />
         </label>
         <label>
@@ -72,9 +73,8 @@ const PostForm: React.FC<PostFormProps> = ({ id }) => {
         <div>
           <label>Roles:</label>
           <div className="flex justify-between">
-            <label>
+            <label className="hover:cursor-pointer flex gap-1">
               <input
-                className="bg-gray-700"
                 type="checkbox"
                 name="roles"
                 value="tank"
@@ -88,7 +88,7 @@ const PostForm: React.FC<PostFormProps> = ({ id }) => {
               />
               Tank
             </label>
-            <label>
+            <label className="hover:cursor-pointer flex gap-1">
               <input
                 type="checkbox"
                 name="roles"
@@ -103,7 +103,7 @@ const PostForm: React.FC<PostFormProps> = ({ id }) => {
               />
               Damage
             </label>
-            <label>
+            <label className="hover:cursor-pointer flex gap-1">
               <input
                 type="checkbox"
                 name="roles"

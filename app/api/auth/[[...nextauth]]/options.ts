@@ -1,7 +1,11 @@
 import type { NextAuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { fetchUser } from "@/lib/actions/user.actions";
+import {
+  CreateUser,
+  fetchUser,
+  fetchUserByEmail,
+} from "@/lib/actions/user.actions";
 
 export const options: NextAuthOptions = {
   // Configure one or more authentication providers
@@ -41,7 +45,28 @@ export const options: NextAuthOptions = {
         } else return null;
       },
     }),
-
     // ...add more providers here
   ],
+  callbacks: {
+    async session({ session }) {
+      return session;
+    },
+    async signIn({ profile }) {
+      console.log(profile);
+      try {
+        const userExists = await fetchUserByEmail(profile?.email || "");
+        if (!userExists) {
+          const user = await CreateUser({
+            username: profile?.name || "",
+            name: profile?.name || "",
+            email: profile?.email || "",
+            password: "",
+          });
+        }
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
 };

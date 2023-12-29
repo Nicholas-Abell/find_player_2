@@ -33,7 +33,7 @@ export async function fetchPost(id: string) {
   }
 }
 
-type Post = { title: string; content: string; roles: Role[], id: string };
+type Post = { title: string; content: string; roles: Role[]; id: string };
 
 export async function CreatePost({ title, content, roles, id }: Post) {
   try {

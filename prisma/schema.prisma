@@ -17,13 +17,15 @@ datasource db {
 }
 
 model Post {
-  id       String    @id @default(cuid())
-  title    String
-  content  String?
-  role     Role[]
-  author   User?     @relation(fields: [authorId], references: [id])
-  authorId String?
-  messages Message[]
+  id        String    @id @default(cuid())
+  title     String
+  content   String?
+  role      Role[]
+  author    User?     @relation(fields: [authorId], references: [id])
+  authorId  String?
+  createdAt DateTime  @default(now()) @map(name: "created_at")
+  updatedAt DateTime  @updatedAt @map(name: "updated_at")
+  messages  Message[]
 }
 
 model User {
@@ -41,12 +43,14 @@ model User {
 }
 
 model Message {
-  id      String  @id @default(cuid())
-  author  User    @relation(fields: [userId], references: [id])
-  Post    Post?   @relation(fields: [postId], references: [id])
-  postId  String?
-  userId  String
-  content String
+  id        String   @id @default(cuid())
+  author    User     @relation(fields: [userId], references: [id])
+  Post      Post?    @relation(fields: [postId], references: [id])
+  postId    String?
+  userId    String
+  content   String
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updatedAt DateTime @updatedAt @map(name: "updated_at")
 
-    @@map(name: "messages")
+  @@map(name: "messages")
 }

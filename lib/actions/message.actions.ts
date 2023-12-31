@@ -13,6 +13,9 @@ export async function FetchMessages(postId: string) {
     where: {
       postId,
     },
+    orderBy: {
+      createdAt: "desc",
+    },
   });
   console.log(messages);
   return messages;

@@ -13,7 +13,7 @@ export async function fetchPosts() {
       },
     },
     orderBy: {
-      createdAt: "desc", // Replace 'createdAt' with the actual field you want to order by
+      createdAt: "desc",
     },
   });
   return posts;

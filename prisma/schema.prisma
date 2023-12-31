@@ -47,4 +47,6 @@ model Message {
   postId  String?
   userId  String
   content String
+
+    @@map(name: "messages")
 }

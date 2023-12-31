@@ -4,7 +4,15 @@ import prisma from "../prisma/prisma";
 import { Role } from "@prisma/client";
 
 export async function fetchPosts() {
-  const posts = await prisma.post.findMany({});
+  const posts = await prisma.post.findMany({
+    include: {
+      author: {
+        select: {
+          username: true,
+        },
+      },
+    },
+  });
   return posts;
 }
 

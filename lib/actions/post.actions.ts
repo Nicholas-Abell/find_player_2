@@ -10,6 +10,13 @@ export async function fetchPosts() {
 
 export async function fetchFilteredPosts(role: "damage" | "healer" | "tank") {
   const posts = await prisma.post.findMany({
+    include: {
+      author: {
+        select: {
+          username: true,
+        },
+      },
+    },
     where: {
       role: {
         has: role,
@@ -22,6 +29,13 @@ export async function fetchFilteredPosts(role: "damage" | "healer" | "tank") {
 export async function fetchPost(id: string) {
   try {
     const post = await prisma.post.findUnique({
+      include: {
+        author: {
+          select: {
+            username: true,
+          },
+        },
+      },
       where: {
         id: id,
       },

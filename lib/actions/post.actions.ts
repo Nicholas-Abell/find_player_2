@@ -12,6 +12,9 @@ export async function fetchPosts() {
         },
       },
     },
+    orderBy: {
+      createdAt: "desc", // Replace 'createdAt' with the actual field you want to order by
+    },
   });
   return posts;
 }
@@ -29,6 +32,9 @@ export async function fetchFilteredPosts(role: "damage" | "healer" | "tank") {
       role: {
         has: role,
       },
+    },
+    orderBy: {
+      createdAt: "desc", // Replace 'createdAt' with the actual field you want to order by
     },
   });
   return posts;

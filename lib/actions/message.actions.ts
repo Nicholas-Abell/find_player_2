@@ -3,6 +3,13 @@ import prisma from "../prisma/prisma";
 
 export async function FetchMessages(postId: string) {
   const messages = await prisma.message.findMany({
+    include: {
+      author: {
+        select: {
+          username: true,
+        },
+      },
+    },
     where: {
       postId,
     },

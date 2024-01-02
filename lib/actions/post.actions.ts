@@ -34,7 +34,7 @@ export async function fetchFilteredPosts(role: "damage" | "healer" | "tank") {
       },
     },
     orderBy: {
-      createdAt: "desc", // Replace 'createdAt' with the actual field you want to order by
+      createdAt: "desc",
     },
   });
   return posts;

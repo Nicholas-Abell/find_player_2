@@ -1,19 +1,11 @@
-// schema.prisma
-
-enum Role {
-  tank
-  damage
-  healer
-}
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
   provider  = "postgresql"
-  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
 model Post {
@@ -21,10 +13,10 @@ model Post {
   title     String
   content   String?
   role      Role[]
-  author    User?     @relation(fields: [authorId], references: [id])
   authorId  String?
-  createdAt DateTime  @default(now()) @map(name: "created_at")
-  updatedAt DateTime  @updatedAt @map(name: "updated_at")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  author    User?     @relation(fields: [authorId], references: [id])
   messages  Message[]
 }
 
@@ -34,23 +26,29 @@ model User {
   username  String    @unique
   password  String
   email     String    @unique
-  createdAt DateTime  @default(now()) @map(name: "created_at")
-  updatedAt DateTime  @updatedAt @map(name: "updated_at")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
   posts     Post[]
   Message   Message[]
 
-  @@map(name: "users")
+  @@map("users")
 }
 
 model Message {
   id        String   @id @default(cuid())
-  author    User     @relation(fields: [userId], references: [id])
-  Post      Post?    @relation(fields: [postId], references: [id])
   postId    String?
   userId    String
   content   String
-  createdAt DateTime @default(now()) @map(name: "created_at")
-  updatedAt DateTime @updatedAt @map(name: "updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  Post      Post?    @relation(fields: [postId], references: [id])
+  author    User     @relation(fields: [userId], references: [id])
 
-  @@map(name: "messages")
+  @@map("messages")
+}
+
+enum Role {
+  tank
+  damage
+  healer
 }

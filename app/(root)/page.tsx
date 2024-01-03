@@ -8,7 +8,7 @@ import { fetchUserByEmail } from "@/lib/actions/user.actions";
 export default async function Home() {
   let posts = await fetchPosts();
   const session = await getServerSession(options);
-  console.log("session: ", session?.user);
+  // console.log("session: ", session?.user);
 
   const user = session?.user?.email
     ? await fetchUserByEmail(session.user?.email)

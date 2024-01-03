@@ -6,7 +6,7 @@ type pageProps = {};
 
 const page: React.FC<pageProps> = () => {
   return (
-    <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+    <div className="bg-[#161b22] flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         {/* <img
             className="mx-auto h-10 w-auto"
@@ -18,7 +18,7 @@ const page: React.FC<pageProps> = () => {
         </h2>
       </div>
 
-      <div className="bg-slate-800 mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <SignUpForm />
 
         <p className="mt-10 text-center text-sm text-gray-500">

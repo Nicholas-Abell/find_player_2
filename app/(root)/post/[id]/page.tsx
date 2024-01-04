@@ -1,5 +1,9 @@
+import { options } from "@/app/api/auth/[[...nextauth]]/options";
+import MessageForm from "@/components/forms/MessageForm";
 import { FetchMessages } from "@/lib/actions/message.actions";
 import { fetchPost } from "@/lib/actions/post.actions";
+import { fetchUserByEmail } from "@/lib/actions/user.actions";
+import { getServerSession } from "next-auth";
 import React from "react";
 import { FaShield } from "react-icons/fa6";
 import { GiHeavyBullets, GiHealthNormal } from "react-icons/gi";
@@ -9,6 +13,11 @@ type pageProps = {};
 async function page({ params }: { params: { id: string } }) {
   const post = await fetchPost(params.id);
   const messages = await FetchMessages(params.id);
+  const session = await getServerSession(options);
+
+  const user = session?.user?.email
+    ? await fetchUserByEmail(session.user?.email)
+    : null;
 
   return (
     <div>
@@ -47,6 +56,9 @@ async function page({ params }: { params: { id: string } }) {
             <GiHealthNormal size={25} />
           </div>
         </div>
+      </div>
+      <div>
+        <MessageForm userId={user?.id} postId={params.id} />
       </div>
       <div className="w-full text-gray-200 border-b border-slate-700 py-4 px-8">
         {messages?.map((message: any, key: number) => (

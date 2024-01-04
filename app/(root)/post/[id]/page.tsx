@@ -57,16 +57,17 @@ async function page({ params }: { params: { id: string } }) {
           </div>
         </div>
       </div>
-      <div>
-        <MessageForm userId={user?.id} postId={params.id} />
-      </div>
-      <div className="w-full text-gray-200 border-b border-slate-700 py-4 px-8">
-        {messages?.map((message: any, key: number) => (
-          <p key={key}>
+      <MessageForm userId={user?.id} postId={params.id} />
+      {messages?.map((message: any, key: number) => (
+        <div
+          key={key}
+          className="w-full text-gray-200 border-b border-slate-700 py-4 px-8"
+        >
+          <p>
             {message.author.username}: {message.content}
           </p>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 }

@@ -8,7 +8,7 @@ type MessageFormProps = {
 
 const MessageForm: React.FC<MessageFormProps> = ({ userId, postId }) => {
   return (
-    <div className="px-4 py-8 text-gray-200">
+    <div className="px-4 py-8 text-gray-200 border-b-2 border-gray-500">
       <form action={CreateMessage}>
         <div>
           <label

@@ -1,7 +1,5 @@
-"use client";
 import { CreatePost } from "@/lib/actions/post.actions";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React from "react";
 
 type PostFormProps = {
   id: string;
@@ -15,20 +13,6 @@ interface FormData {
 }
 
 const PostForm: React.FC<PostFormProps> = ({ id }) => {
-  const router = useRouter();
-
-  const [formData, setFormData] = useState<FormData>({
-    title: "",
-    content: "",
-    roles: [],
-    id,
-  });
-
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    CreatePost(formData);
-  };
-
   const toggleRole = (roles: string[], role: string) => {
     return roles.includes(role)
       ? roles.filter((r) => r !== role)
@@ -38,88 +22,48 @@ const PostForm: React.FC<PostFormProps> = ({ id }) => {
   return (
     <div className="w-full px-4 border border-gray-700 py-2">
       <form
-        onSubmit={handleSubmit}
+        action={CreatePost}
         className="mx-auto flex flex-col justify-center gap-2"
       >
-        <label>
-          <p>Title</p>
+        <div>
+          <label htmlFor="title">Title:</label>
           <input
             type="text"
+            name="title"
+            id="title"
             className="text-gray-200 placeholder:text-gray-400 px-1 w-full bg-gray-700 py-2"
             placeholder="Genji"
-            onChange={(e) => {
-              setFormData((prevData) => ({
-                ...prevData,
-                title: e.target.value,
-              }));
-            }}
             required
           />
-        </label>
-        <label>
-          <p>Content</p>
+        </div>
+        <div>
+          <label htmlFor="content">Content</label>
           <textarea
             className="text-gray-200 placeholder:text-gray-400 px-1 w-full bg-gray-700 py-2"
             placeholder="I need healing!"
+            name="content"
+            id="content"
             rows={8}
-            onChange={(e) => {
-              setFormData((prevData) => ({
-                ...prevData,
-                content: e.target.value,
-              }));
-            }}
           />
-        </label>
+        </div>
         <div>
           <label>Roles:</label>
           <div className="flex justify-between">
-            <label className="hover:cursor-pointer flex gap-1">
-              <input
-                type="checkbox"
-                name="roles"
-                value="tank"
-                checked={formData.roles.includes("tank")}
-                onChange={() =>
-                  setFormData((prevData) => ({
-                    ...prevData,
-                    roles: toggleRole(prevData.roles, "tank"),
-                  }))
-                }
-              />
+            <label htmlFor="tank" className="hover:cursor-pointer flex gap-1">
+              <input type="checkbox" name="tank" value="tank" id="tank" />
               Tank
             </label>
-            <label className="hover:cursor-pointer flex gap-1">
-              <input
-                type="checkbox"
-                name="roles"
-                value="damage"
-                checked={formData.roles.includes("damage")}
-                onChange={() =>
-                  setFormData((prevData) => ({
-                    ...prevData,
-                    roles: toggleRole(prevData.roles, "damage"),
-                  }))
-                }
-              />
+            <label htmlFor="damage" className="hover:cursor-pointer flex gap-1">
+              <input type="checkbox" name="damage" value="damage" id="damage" />
               Damage
             </label>
-            <label className="hover:cursor-pointer flex gap-1">
-              <input
-                type="checkbox"
-                name="roles"
-                value="healer"
-                checked={formData.roles.includes("healer")}
-                onChange={() =>
-                  setFormData((prevData) => ({
-                    ...prevData,
-                    roles: toggleRole(prevData.roles, "healer"),
-                  }))
-                }
-              />
+            <label htmlFor="healer" className="hover:cursor-pointer flex gap-1">
+              <input type="checkbox" name="healer" value="healer" id="healer" />
               Healer
             </label>
           </div>
         </div>
+        <input type="hidden" id="authorId" name="authorId" value={id} />
         <button className="bg-blue-800 rounded hover:bg-blue-900 py-2">
           POST
         </button>

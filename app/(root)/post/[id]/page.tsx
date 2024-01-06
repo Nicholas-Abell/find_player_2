@@ -61,11 +61,10 @@ async function page({ params }: { params: { id: string } }) {
       {messages?.map((message: any, key: number) => (
         <div
           key={key}
-          className="w-full text-gray-200 border-b border-slate-700 py-4 px-8"
+          className="w-full flex items-center gap-4 text-gray-200 border-b border-slate-700 py-4 px-8"
         >
-          <p>
-            {message.author.username}: {message.content}
-          </p>
+          <p className="font-bold text-xs">{message.author.username}:</p>
+          <p>{message.content}</p>
         </div>
       ))}
     </div>

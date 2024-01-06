@@ -28,6 +28,7 @@ export default async function Home() {
             roles={post.role}
             id={post.id}
             key={key}
+            isAuthor={post?.authorId !== user?.id ? false : true}
           />
         ))}
       </div>

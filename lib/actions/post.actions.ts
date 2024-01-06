@@ -86,14 +86,14 @@ export async function CreatePost(formdata: FormData) {
   revalidatePath("/");
 }
 
-export async function DeletePost(id: string) {
+export async function deletePost(id: string) {
   try {
     const deletedPost = await prisma.post.delete({
       where: {
         id: id,
       },
     });
-    console.log(deletedPost);
+    console.log("post deleted:", deletedPost);
   } catch (error) {
     console.log("DeletePost Error: ", error);
   }

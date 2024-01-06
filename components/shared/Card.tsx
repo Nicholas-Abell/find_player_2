@@ -2,7 +2,9 @@
 import React from "react";
 import { FaShield } from "react-icons/fa6";
 import { GiHealthNormal, GiHeavyBullets } from "react-icons/gi";
+import { MdDeleteForever } from "react-icons/md";
 import Link from "next/link";
+import { deletePost } from "@/lib/actions/post.actions";
 
 type CardProps = {
   title: string;
@@ -10,14 +12,38 @@ type CardProps = {
   roles?: string[] | null;
   id: string;
   author: string | null | undefined;
+  isAuthor: boolean;
 };
 
-const Card: React.FC<CardProps> = ({ title, content, roles, id, author }) => {
+let handleClick = (id: string, e: React.MouseEvent<HTMLButtonElement>) => {
+  e.preventDefault();
+  deletePost(id);
+};
+
+const Card: React.FC<CardProps> = ({
+  title,
+  content,
+  roles,
+  id,
+  author,
+  isAuthor,
+}) => {
   return (
     <Link
       href={`post/${id}`}
-      className="flex flex-col justify-between items-center py-4 bg-gray-800 px-4 gap-4"
+      className="relative flex flex-col justify-between items-center py-4 bg-gray-800 px-4 gap-4"
     >
+      {isAuthor && (
+        <button
+          onClick={(e) => handleClick(id, e)}
+          className="absolute top-0 left-0 p-4"
+        >
+          <MdDeleteForever
+            className="text-red-800 z-10 hover:text-red-900"
+            size={30}
+          />
+        </button>
+      )}
       <h3>{author}</h3>
       <h3>{title}</h3>
       <p>{content}</p>

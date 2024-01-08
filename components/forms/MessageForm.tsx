@@ -27,7 +27,7 @@ const MessageForm: React.FC<MessageFormProps> = ({ userId, postId }) => {
               className="block bg-[#0d1117] border border-gray-600 rounded-lg w-full rounded-m py-1.5 shadow-sm placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 px-4"
             />
             <button
-              className="border border-gray-600 p-1 rounded-xl hover:bg-gray-700 ease-in-out"
+              className="border border-gray-600 py-2 px-4 rounded-xl hover:bg-gray-700 ease-in-out"
               type="submit"
             >
               SEND
